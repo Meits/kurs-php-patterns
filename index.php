@@ -73,7 +73,9 @@ use Bridge\SimpleSave;
 use Bridge\SafeSave;
 use Bridge\MysqlDriver;
 use Bridge\SqliteDriver;
-
+use Mvc\Controller\Controller;
+use Mvc\Model\Model;
+use Mvc\View\View;
 
 
 require "functions.php";
@@ -146,7 +148,7 @@ queryExecute(new MysqlQueryBuilder());
 /*$obj = new BaseLogic(new ImagesSave('builder.png'));
 $obj->execute();*/
 
-function saveStrategy($strategyCollection) 
+/*function saveStrategy($strategyCollection)
 {
     foreach($strategyCollection as $item) {
         if($item instanceof \Strategy\IFileSave) {
@@ -155,7 +157,7 @@ function saveStrategy($strategyCollection)
     }
 
     return true;
-}
+}*/
 
 //saveStrategy(array(
   //  new ImagesSave('builder.png'),
@@ -241,7 +243,7 @@ $chat->redo();
 
 // echo $homepage->getTitle();
 // echo $homepage->render();
-
+/*
 $mysqlDriver = new MysqlDriver("localhost", 'root','', 'patterns');
 $sqliteDriver = new SqliteDriver("bridge.db");
 
@@ -256,5 +258,11 @@ $safeSave = new SafeSave($mysqlDriver,"hello", "md5" );
 $safeSave->save();
 
 $safeSave = new SafeSave($sqliteDriver,"hello", "md5" );
-$safeSave->save();
+$safeSave->save();*/
+
+$model = new Model();
+$controller = new Controller($model);
+$controller->action();
+$view = new View($controller, $model);
+echo $view->output();
 
